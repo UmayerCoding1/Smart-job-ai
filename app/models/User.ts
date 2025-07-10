@@ -31,12 +31,12 @@ export interface IUser {
   email: string;
   password: string;
   role: string;
-  avatar: string;
+  avatar?: string;
   education: IEducation[];
-  savejobs: mongoose.Types.ObjectId[];
-  appliedjobs: IAppliedJob[];
-  company: mongoose.Types.ObjectId;
-  postJobs: mongoose.Types.ObjectId[];
+  savejobs?: mongoose.Types.ObjectId[];
+  appliedjobs?: IAppliedJob[];
+  company?: mongoose.Types.ObjectId;
+  postJobs?: mongoose.Types.ObjectId[];
   profileComplete: number;
   isVerified: string;
   createdAt?: Date;
@@ -62,8 +62,9 @@ const userSchema = new Schema<IUser>(
     },
     role: {
       type: String,
-      default: ROLE.JOBSEEKER,
+     required: true,
       enum: Object.values(ROLE),
+      
     },
     avatar: {
       type: String,
