@@ -1,6 +1,6 @@
 import { IUser, User } from "@/app/models/User";
 import { connectToDatabase } from "@/lib/db";
-import bcrypt from "bcryptjs";
+
 
 import { NextRequest, NextResponse } from "next/server";
 
@@ -32,8 +32,7 @@ export async function POST(request: NextRequest) {
       fullname,
       email,
       password,
-      role,
-      company: '686f96e4fcf264b49050c531'
+      role
     });
 
     return NextResponse.json(

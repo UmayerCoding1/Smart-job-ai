@@ -5,18 +5,23 @@ export const ROLE = {
   JOBSEEKER: "jobseeker",
   REQRUITER: "reqruiter",
   ADMIN: "admin",
-}as const;
+} as const;
 
 export const VERIFIED = {
   UNVERIFIED: "unverified",
   VERIFIED: "verified",
 } as const;
 
+export const LOGIN_METHOD = {
+  CUSTOM: "custom",
+  GOOGLE: "google",
+  FACEBOOK: "facebook",
+} as const;
 
-export interface  IEducation{
+export interface IEducation {
   degree: string;
   institution: string;
-  year: number
+  year: number;
 }
 
 export interface IAppliedJob {
@@ -32,6 +37,14 @@ export interface IUser {
   password: string;
   role: string;
   avatar?: string;
+  loginMethod: string;
+  googleId?: string;
+  facebookId?: string;
+  otp?: {
+    code: number;
+    expiresAt: Date;
+  };
+  isOtpVerified: boolean;
   education: IEducation[];
   savejobs?: mongoose.Types.ObjectId[];
   appliedjobs?: IAppliedJob[];
@@ -42,8 +55,6 @@ export interface IUser {
   createdAt?: Date;
   updatedAt?: Date;
 }
-
-
 
 const userSchema = new Schema<IUser>(
   {
@@ -62,13 +73,33 @@ const userSchema = new Schema<IUser>(
     },
     role: {
       type: String,
-     required: true,
+      required: true,
       enum: Object.values(ROLE),
-      
     },
     avatar: {
       type: String,
       default: "", // or a default avatar URL
+    },
+    loginMethod: {
+      type: String,
+      required: true,
+      enum: Object.values(LOGIN_METHOD),
+    },
+    googleId: {
+      type: String,
+      default: null,
+    },
+    facebookId: {
+      type: String,
+      default: null,
+    },
+    otp: {
+      code: { type: String },
+      expiresAt: { type: Date },
+    },
+    isOtpVerified: {
+      type: Boolean,
+      default: false,
     },
     education: [
       {
@@ -123,7 +154,6 @@ const userSchema = new Schema<IUser>(
     timestamps: true,
   }
 );
-
 
 userSchema.pre("save", async function (next) {
   if (!this.isModified("password")) return next();
