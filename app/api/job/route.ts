@@ -1,4 +1,4 @@
-import { Company } from "@/app/models/Company";
+// import { Company } from "@/app/models/Company";
 import { IJob, Job } from "@/app/models/Job";
 import { connectToDatabase } from "@/lib/db";
 import { NextRequest, NextResponse } from "next/server";
@@ -9,11 +9,13 @@ export async function POST(request: NextRequest) {
   try {
     await connectToDatabase();
 
+    // const token = 
+
     const body: IJob = await request.json();
     const {
       title,
       description,
-      company,
+      // company,
       reqruiter,
       location,
       salaryrange,
@@ -27,10 +29,13 @@ export async function POST(request: NextRequest) {
       workTime,
     } = body;
 
+
+    
+    
     if (
       !title ||
       !description ||
-      !company ||
+      // !company ||
       !reqruiter ||
       !location ||
       !salaryrange ||
@@ -49,19 +54,19 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const existingCompany = await Company.findById(company);
+    // const existingCompany = await Company.findById(company);
 
-    if (!existingCompany) {
-      return NextResponse.json(
-        { message: "Company not found", success: false },
-        { status: 404 }
-      );
-    }
+    // if (!existingCompany) {
+    //   return NextResponse.json(
+    //     { message: "Company not found", success: false },
+    //     { status: 404 }
+    //   );
+    // }
 
-    await Job.create({
+  const job =  await Job.create({
       title,
       description,
-      company,
+      // company,
       reqruiter,
       location,
       salaryrange,
@@ -79,6 +84,8 @@ export async function POST(request: NextRequest) {
         isRemoteAvailable: body.isRemoteAvailable,
       }),
     });
+
+    console.log(job);
 
     return NextResponse.json(
       { message: "Job posted successfully", success: true },

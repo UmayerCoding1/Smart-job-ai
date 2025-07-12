@@ -36,7 +36,7 @@ export interface IJob {
 export const JobSchema = new Schema<IJob>({
   title: { type: String, required: true },
   description: { type: String, required: true },
-  company: { type: Schema.Types.ObjectId, required: true },
+  // company: { type: Schema.Types.ObjectId, required: true },
   reqruiter: { type: Schema.Types.ObjectId, required: true },
   location: { type: String, required: true },
   salaryrange: { type: Object, required: true },
@@ -67,8 +67,8 @@ export const JobSchema = new Schema<IJob>({
     default: "Standard national holidays and company holidays apply.",
   },
   workTime: {
-    start: { type: Number, default: "09:00 AM" },
-    end: { type: Number, default: "05:00 PM" },
+    start: { type: String, default: "09:00 AM" },
+    end: { type: String, default: "05:00 PM" },
   },
   shift: { type: String, enum: ["day", "night", "flexble"], default: "day" },
   benefits: { type: [String], default: ["Medical", "Festiva Bonus"] },
