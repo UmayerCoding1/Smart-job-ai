@@ -8,9 +8,9 @@ export async function POST(request: NextRequest) {
   try {
     await connectToDatabase();
 
-    const { fullname, email, password, role }: IUser = await request.json();
-
-    if (!fullname || !email || !password || !role) {
+    const { fullname, email, password, role,loginMethod }: IUser = await request.json();
+  
+    if (!fullname || !email || !password || !role || !loginMethod) {
       return NextResponse.json(
         { message: "All fields are required", success: false },
         { status: 400 }
@@ -32,7 +32,8 @@ export async function POST(request: NextRequest) {
       fullname,
       email,
       password,
-      role
+      role,
+      loginMethod
     });
 
     return NextResponse.json(
