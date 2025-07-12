@@ -73,7 +73,7 @@ const userSchema = new Schema<IUser>(
     },
     role: {
       type: String,
-      required: true,
+      default: ROLE.JOBSEEKER,
       enum: Object.values(ROLE),
     },
     avatar: {
