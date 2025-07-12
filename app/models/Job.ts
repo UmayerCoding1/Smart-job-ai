@@ -33,7 +33,7 @@ export interface IJob {
   updatedAt?: Date;
 }
 
-export const JodSchema = new Schema<IJob>({
+export const JobSchema = new Schema<IJob>({
   title: { type: String, required: true },
   description: { type: String, required: true },
   company: { type: Schema.Types.ObjectId, required: true },
@@ -81,4 +81,4 @@ export const JodSchema = new Schema<IJob>({
   },
 });
 
-export const Jod = models.Jod || model<IJob>("Jod", JodSchema);
+export const Job = models.Job || model<IJob>("Job", JobSchema);
