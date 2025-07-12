@@ -3,9 +3,10 @@ import bcrypt from "bcryptjs";
 
 export const ROLE = {
   JOBSEEKER: "jobseeker",
-  REQRUITER: "reqruiter",
+  RECRUITER: "recruiter", 
   ADMIN: "admin",
 } as const;
+
 
 export const VERIFIED = {
   UNVERIFIED: "unverified",

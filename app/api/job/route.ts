@@ -1,6 +1,8 @@
 // import { Company } from "@/app/models/Company";
+import { Company } from "@/app/models/Company";
 import { IJob, Job } from "@/app/models/Job";
 import { connectToDatabase } from "@/lib/db";
+import { withAuth } from "@/lib/withAuth";
 import { NextRequest, NextResponse } from "next/server";
 
 // shift,vacancies,isRemoteAvailable
@@ -9,13 +11,13 @@ export async function POST(request: NextRequest) {
   try {
     await connectToDatabase();
 
-    // const token = 
+
 
     const body: IJob = await request.json();
     const {
       title,
       description,
-      // company,
+      company,
       reqruiter,
       location,
       salaryrange,
@@ -27,15 +29,18 @@ export async function POST(request: NextRequest) {
       category,
       holidayPolicy,
       workTime,
+      
     } = body;
 
 
-    
+        const auth = await withAuth(request, { allowedRoles: "recruiter" });
+    if (!auth.ok) return auth.response;
+
     
     if (
       !title ||
       !description ||
-      // !company ||
+      !company ||
       !reqruiter ||
       !location ||
       !salaryrange ||
@@ -46,7 +51,7 @@ export async function POST(request: NextRequest) {
       !dedline ||
       !category ||
       !holidayPolicy ||
-      !workTime
+      !workTime 
     ) {
       return NextResponse.json(
         { message: "All fields are required", success: false },
@@ -54,19 +59,19 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // const existingCompany = await Company.findById(company);
+    const existingCompany = await Company.findById(company);
 
-    // if (!existingCompany) {
-    //   return NextResponse.json(
-    //     { message: "Company not found", success: false },
-    //     { status: 404 }
-    //   );
-    // }
+    if (!existingCompany) {
+      return NextResponse.json(
+        { message: "Company not found", success: false },
+        { status: 404 }
+      );
+    }
 
   const job =  await Job.create({
       title,
       description,
-      // company,
+      company,
       reqruiter,
       location,
       salaryrange,

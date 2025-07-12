@@ -36,8 +36,8 @@ export interface IJob {
 export const JobSchema = new Schema<IJob>({
   title: { type: String, required: true },
   description: { type: String, required: true },
-  // company: { type: Schema.Types.ObjectId, required: true },
-  reqruiter: { type: Schema.Types.ObjectId, required: true },
+  company: { type: Schema.Types.ObjectId, ref: "Company", required: true },
+  reqruiter: { type: Schema.Types.ObjectId, ref: "User", required: true },
   location: { type: String, required: true },
   salaryrange: { type: Object, required: true },
   jobtype: {

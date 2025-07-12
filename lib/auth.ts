@@ -44,6 +44,9 @@ export const authOptions: NextAuthOptions = {
             throw new Error("OTP_NOT_VERIFIED");
           }
 
+
+          console.log('login successfully');
+          
           return {
             id: user._id.toString(),
             email: user.email,
@@ -57,7 +60,6 @@ export const authOptions: NextAuthOptions = {
     }),
   ],
   callbacks: {
-
     async signIn({
       user,
       account,
@@ -93,14 +95,13 @@ export const authOptions: NextAuthOptions = {
     async jwt({ token, user }: { token: JWT; user: NextAuthUser }) {
       if (user) {
         console.log(user);
-        token.role = user.role;
         token.id = user.id;
       }
       return token;
     },
 
     async session({ session, token }: { session: Session; token: JWT }) {
-      session.user.id = token.id as string;
+     
       session.user.role = token.role as string;
 
       return session;
@@ -111,7 +112,7 @@ export const authOptions: NextAuthOptions = {
   },
   session: {
     strategy: "jwt",
-    maxAge: 7 * 24 * 60 * 60,
+    maxAge: 7 * 24 * 60 *60, 
   },
 
   secret: process.env.NEXTAUTH_SECRET!,
