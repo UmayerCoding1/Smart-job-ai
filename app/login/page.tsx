@@ -7,7 +7,7 @@ import { useRouter } from 'next/navigation'; // or 'next/router' in Pages Router
 export default function LoginForm() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
+  // const [error, setError] = useState('');
   const router = useRouter();
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -50,7 +50,7 @@ console.log(res);
         className="w-full p-2 border rounded"
       />
 
-      {error && <p className="text-red-500">{error}</p>}
+      {/* {error && <p className="text-red-500">{error}</p>} */}
 
       <button type="submit" className="bg-blue-600 text-white p-2 rounded w-full">
         Sign In
