@@ -3,10 +3,9 @@ import bcrypt from "bcryptjs";
 
 export const ROLE = {
   JOBSEEKER: "jobseeker",
-  RECRUITER: "recruiter", 
+  RECRUITER: "recruiter",
   ADMIN: "admin",
 } as const;
-
 
 export const VERIFIED = {
   UNVERIFIED: "unverified",
@@ -18,6 +17,12 @@ export const LOGIN_METHOD = {
   GOOGLE: "google",
   FACEBOOK: "facebook",
 } as const;
+
+export enum Status {
+  ACTIVE = "active",
+  INACTIVE = "inactive",
+  BLACKLISTED = "blacklisted",
+}
 
 export interface IEducation {
   degree: string;
@@ -53,6 +58,7 @@ export interface IUser {
   postJobs?: mongoose.Types.ObjectId[];
   profileComplete: number;
   isVerified: string;
+  status: string;
   createdAt?: Date;
   updatedAt?: Date;
 }
@@ -149,6 +155,11 @@ const userSchema = new Schema<IUser>(
       type: String,
       default: VERIFIED.UNVERIFIED,
       enum: Object.values(VERIFIED),
+    },
+    status: {
+      type: String,
+      default: Status.ACTIVE,
+      enum: Object.values(Status),
     },
   },
   {

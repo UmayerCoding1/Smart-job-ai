@@ -1,6 +1,7 @@
 import { IJob, Job } from "@/app/models/Job";
 import { Params } from "@/app/types/Interface";
 import { connectToDatabase } from "@/lib/db";
+import { withAuth } from "@/lib/withAuth";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET({ params }: Params) {
@@ -33,6 +34,11 @@ export async function DELETE({ params }: Params) {
 export async function PUT(request: NextRequest, { params }: Params) {
   try {
     await connectToDatabase();
+
+    const auth = await withAuth(request, { allowedRoles: "admin" });
+    if (!auth.ok) return auth.response;
+
+    
     const body: IJob = await request.json();
     const job = await Job.findByIdAndUpdate(params.id, body, { new: true });
     return NextResponse.json({ job }, { status: 200 });

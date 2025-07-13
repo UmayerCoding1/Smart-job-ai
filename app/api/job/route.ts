@@ -11,8 +11,6 @@ export async function POST(request: NextRequest) {
   try {
     await connectToDatabase();
 
-
-
     const body: IJob = await request.json();
     const {
       title,
@@ -29,14 +27,11 @@ export async function POST(request: NextRequest) {
       category,
       holidayPolicy,
       workTime,
-      
     } = body;
 
-
-        const auth = await withAuth(request, { allowedRoles: "recruiter" });
+    const auth = await withAuth(request, { allowedRoles: "recruiter" });
     if (!auth.ok) return auth.response;
 
-    
     if (
       !title ||
       !description ||
@@ -51,7 +46,7 @@ export async function POST(request: NextRequest) {
       !dedline ||
       !category ||
       !holidayPolicy ||
-      !workTime 
+      !workTime
     ) {
       return NextResponse.json(
         { message: "All fields are required", success: false },
@@ -68,7 +63,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-  const job =  await Job.create({
+    const job = await Job.create({
       title,
       description,
       company,
@@ -101,7 +96,6 @@ export async function POST(request: NextRequest) {
     throw error;
   }
 }
-
 
 export async function GET() {
   try {
