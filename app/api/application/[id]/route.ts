@@ -1,13 +1,13 @@
 import { Application, IApplication } from "@/app/models/Application";
 import { ROLE } from "@/app/models/User";
-import { Params } from "@/app/types/Interface";
 import { connectToDatabase } from "@/lib/db";
 import { withAuth } from "@/lib/withAuth";
 import { NextRequest, NextResponse } from "next/server";
 
+type RouteParams = { params: { id: string } };
 
 // recruiter update application status
-export async function PUT(reqest: NextRequest, { params }: Params) {
+export async function PUT(reqest: NextRequest, { params }: RouteParams) {
   try {
     await connectToDatabase();
     const isRecruiter = await withAuth(reqest, { allowedRoles: "recruiter" });
@@ -40,7 +40,7 @@ export async function PUT(reqest: NextRequest, { params }: Params) {
 
 
 // jobseeker get his applications
-export async function GET(reqest: NextRequest, { params }: Params) {
+export async function GET(reqest: NextRequest, { params }: RouteParams) {
   try {
     const isJobSaker = await withAuth(reqest, { allowedRoles: ROLE.JOBSEEKER });
     if (!isJobSaker.ok) return isJobSaker.response;
