@@ -17,6 +17,7 @@ export interface ICompany {
     industry: string
     activeStatus: string
     recoveryLastDate?: Date
+    recruiter: mongoose.Types.ObjectId
 }
  
 
@@ -30,6 +31,7 @@ export interface ICompany {
     industry: { type: String, required: true },
     activeStatus: { type: String, default: ActiveStatus.ACTIVE, enum: Object.values(ActiveStatus) },
     recoveryLastDate: { type: Date },
+    recruiter: { type: Schema.Types.ObjectId, ref: "User", required: true },
   }, {timestamps: true});
   
   export const Company = models?.Company || model<ICompany>("Company", companySchema);
