@@ -1,3 +1,3 @@
-export interface Params {
+export type  Params  = {
     params: { id: string }
 }
