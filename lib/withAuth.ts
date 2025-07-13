@@ -30,7 +30,7 @@ export const withAuth = async (
 // console.log(token);
 
   const user = await User.findById(token.id);
- console.log(user);
+
  
   if (options.allowedRoles !== user.role) {
     return {

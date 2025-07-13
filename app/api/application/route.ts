@@ -5,6 +5,8 @@ import { connectToDatabase } from "@/lib/db";
 import { withAuth } from "@/lib/withAuth";
 import { NextRequest, NextResponse } from "next/server";
 
+
+// jobseeker apply for a job
 export async function POST(reqest: NextRequest) {
   try {
     await connectToDatabase();
@@ -43,6 +45,8 @@ export async function POST(reqest: NextRequest) {
   }
 }
 
+
+// recruiter get all applications for a job 
 export async function GET(reqest: NextRequest, { params }: Params) {
     try {
         await connectToDatabase();
