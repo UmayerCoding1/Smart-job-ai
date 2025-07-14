@@ -4,10 +4,10 @@ import { connectToDatabase } from "@/lib/db";
 import { withAuth } from "@/lib/withAuth";
 import { NextRequest, NextResponse } from "next/server";
 
-type RouteParams = { params: { id: string } };
+
 
 // recruiter update application status
-export async function PUT(reqest: NextRequest, { params }: RouteParams) {
+export async function PUT(reqest: NextRequest, context: { params: { id: string } }) {
   try {
     await connectToDatabase();
     const isRecruiter = await withAuth(reqest, { allowedRoles: "recruiter" });
@@ -15,7 +15,7 @@ export async function PUT(reqest: NextRequest, { params }: RouteParams) {
 
     const {status}: IApplication = await reqest.json();
     const application = await Application.findByIdAndUpdate(
-      params.id,
+      context.params.id,
       {
         $set: {
           status,
@@ -40,13 +40,13 @@ export async function PUT(reqest: NextRequest, { params }: RouteParams) {
 
 
 // jobseeker get his applications
-export async function GET(reqest: NextRequest, { params }: RouteParams) {
+export async function GET(reqest: NextRequest, context: { params: { id: string } }) {
   try {
     const isJobSaker = await withAuth(reqest, { allowedRoles: ROLE.JOBSEEKER });
     if (!isJobSaker.ok) return isJobSaker.response;
 
     await connectToDatabase();
-    const application = await Application.findById(params.id);
+    const application = await Application.findById(context.params.id);
     if (!application) {
       return NextResponse.json(
         { message: "Application not found", success: false },
