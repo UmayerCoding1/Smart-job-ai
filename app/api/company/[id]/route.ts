@@ -8,22 +8,22 @@ import { NextRequest, NextResponse } from "next/server";
 
 // export const dynamic = "force-dynamic";
 // recruiter get his company
-export async function GET(request: NextRequest,context: { params: { id: string } }) {
+export async function GET(request: NextRequest, context: { params: { id: string } }) {
   try {
     await connectToDatabase();
-   
+
     const { id } = context.params;
     const isRecruiter = await withAuth(request, { allowedRoles: "recruiter" });
     if (!isRecruiter.ok) return isRecruiter.response;
 
     const company = await Company.findById(id);
-
     if (!company) {
       return NextResponse.json(
         { message: "Company not found", success: false },
         { status: 404 }
       );
     }
+
     return NextResponse.json({ company }, { status: 200 });
   } catch (error) {
     console.log("Company get error", error);
