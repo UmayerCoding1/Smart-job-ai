@@ -1,5 +1,6 @@
 export const runtime = "nodejs";
-import { ActiveStatus, Company, ICompany } from "@/app/models/Company";
+// import { ActiveStatus, Company, ICompany } from "@/app/models/Company";
+import {  Company } from "@/app/models/Company";
 
 import { connectToDatabase } from "@/lib/db";
 import { withAuth } from "@/lib/withAuth";
