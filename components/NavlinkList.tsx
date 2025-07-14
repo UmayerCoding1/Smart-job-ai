@@ -18,13 +18,15 @@ import {
   User,
 } from "lucide-react";
 import { signOut } from "next-auth/react";
+import { RootState } from "@/app/redux/store";
 
 const UserImage = "/assets/user.png";
 
 const NavlinkList = ({ session }: { session: { user: IUser } }) => {
-  const user = useSelector((state: any) => state.authR.user);
+  const user = useSelector((state: RootState) => state.authR.user);
   const firstName = user?.fullname.split(" ")[0];
   const lastName = user?.fullname.split(" ")[1];
+
 
   const authenticatedRoutes = [
     { lable: "Profile", link: "/profile", icon: User },

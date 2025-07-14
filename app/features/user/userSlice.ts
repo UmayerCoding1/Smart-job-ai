@@ -1,14 +1,10 @@
+import { IUser } from "@/app/models/User";
 import {createSlice} from "@reduxjs/toolkit";
 
-interface User {
-    email: string;
-    password: string;
-    _id?: string
-}
 
 
 interface AuthState {
-    user: User | null
+    user: IUser | null
 }
 
 const initialState : AuthState = {
