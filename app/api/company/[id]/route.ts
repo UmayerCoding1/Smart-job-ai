@@ -8,7 +8,8 @@ import { NextRequest, NextResponse } from "next/server";
 export async function GET(request: NextRequest, { params }: Params) {
   try {
     await connectToDatabase();
-
+   console.log(params.id);
+   
     const isRecruiter = await withAuth(request, { allowedRoles: "recruiter" });
     if (!isRecruiter.ok) return isRecruiter.response;
 
