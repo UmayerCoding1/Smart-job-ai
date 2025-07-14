@@ -17,10 +17,11 @@ export default function LoginForm() {
       email,
       password,
     });
-console.log(res);
+console.log('res', res);
     if (res?.error === 'OTP_NOT_VERIFIED') {
       router.push('/verify'); 
     } else if (res?.ok) {
+     
       router.push('/');
     } else {
       alert('Login failed');

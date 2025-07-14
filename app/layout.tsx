@@ -27,7 +27,7 @@ export default async function RootLayout({
           <ReduxProvider>
             <Navbar session={session} />
 
-            <main className="max-w-7xl mx-auto ">{children}</main>
+            <main className=" ">{children}</main>
 
             <footer>this is footer</footer>
           </ReduxProvider>

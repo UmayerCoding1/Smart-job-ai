@@ -1,4 +1,4 @@
-import Home from "@/components/Home";
+import Home from "@/components/home/Home";
 
 
 
@@ -7,7 +7,7 @@ const page = async () => {
    
   
   return (
-    <div className="bg-red-50">
+    <div className="">
      <Home/>
     </div>
   );

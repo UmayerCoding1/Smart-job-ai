@@ -4,6 +4,7 @@ import React, { useEffect } from "react";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { setUser } from "@/app/features/user/userSlice";
+import Hero from "./Hero";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -17,7 +18,9 @@ const Home = () => {
 
     handleLogdenUser();
   }, [dispatch]);
-  return <div>home</div>;
+  return <div>
+    <Hero/>
+  </div>;
 };
 
 export default Home;
