@@ -22,7 +22,7 @@ import { RootState } from "@/app/redux/store";
 
 const UserImage = "/assets/user.png";
 
-const NavlinkList = ({ session }: { session: { user: IUser } }) => {
+const NavlinkList = ({ session }: { session: { user: IUser } | null }) => {
   const user = useSelector((state: RootState) => state.authR.user);
   const firstName = user?.fullname.split(" ")[0];
   const lastName = user?.fullname.split(" ")[1];

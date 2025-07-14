@@ -11,7 +11,7 @@ import { IUser } from "@/app/models/User";
 
 export const LargeLogo = "/assets/logo.png";
 export const SmallLogo = "/assets/Ai.png";
-const Navbar = ({ session }: { session: { user: IUser } }) => {
+const Navbar = ({ session }: { session: { user: IUser } | null }) => {
   const [isSticky, setIsSticky] = useState(false);
   
 
