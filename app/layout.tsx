@@ -28,7 +28,11 @@ export default async function RootLayout({
             <Navbar session={session} />
 
             <main className=" ">{children}</main>
+                
 
+                <div className="h-screen">
+
+                </div>
             <footer>this is footer</footer>
           </ReduxProvider>
         </>

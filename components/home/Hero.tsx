@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { Button } from "../ui/button";
 import { Upload } from "lucide-react";
 import Image from "next/image";
+import PrimaryButton from "../button/PrimaryButton";
 
 const SearchImg = "/assets/search-frame-1.png";
 const DotImg = "/assets/dot-frame.png";
@@ -45,12 +46,12 @@ const Hero = () => {
   //   console.log(isJobsMetched, isAccuracy, isHappyUsers);
 
   return (
-    <div className="flex flex-col items-center justify-center h-[50vh] md:h-[50vh] lg:h-[80vh] bg-gradient-to-br from-[#e0e7ff] via-[#f3f4f6] to-[#c2dafb] relative">
+    <div className="flex flex-col items-center justify-center h-[50vh] md:h-[50vh] lg:h-[85vh] bg-gradient-to-br from-[#e0e7ff] via-[#f3f4f6] to-[#c2dafb] relative">
       <p className="bg-[#C2DAFA] py-1 px-10 rounded-2xl text-sm font-semibold">
         🚀 AI-Powered Job Matching
       </p>
       <div>
-        <h2 className="text-4xl md:text-5xl lg:text-8xl  font-bold   lg:font-semibold mt-5 text-center">
+        <h2 className="text-4xl md:text-5xl lg:text-7xl  font-bold   lg:font-semibold mt-5 text-center">
           <span>Find Jobs that Match You</span> <br />
           <span className="text-[#2563EB]">Instantly</span>
         </h2>
@@ -64,10 +65,9 @@ const Hero = () => {
       </div>
 
       <div className="flex items-center gap-2 mt-5">
-        <Button className="bg-[#2563EB] py-6 hover:bg-[#2563EB]/90 cursor-pointer">
-          <Upload />
-          <span className="font-semibold">Upload Resume</span>
-        </Button>
+
+        <PrimaryButton Icon={Upload}>Upload Resume</PrimaryButton>
+        
 
         <Button
           variant={"outline"}

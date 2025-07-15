@@ -5,6 +5,7 @@ import axios from "axios";
 import { useDispatch } from "react-redux";
 import { setUser } from "@/app/features/user/userSlice";
 import Hero from "./Hero";
+import Jobs from "./Jobs";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -18,8 +19,9 @@ const Home = () => {
 
     handleLogdenUser();
   }, [dispatch]);
-  return <div>
+  return <div className="flex flex-col gap-10">
     <Hero/>
+    <Jobs/>
   </div>;
 };
 
