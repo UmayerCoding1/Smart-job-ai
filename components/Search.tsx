@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import PrimaryButton from "./button/PrimaryButton";
-import { BriefcaseBusiness, SearchIcon } from "lucide-react";
+import { BriefcaseBusiness, Building2, SearchIcon } from "lucide-react";
 import { seacrhSchema } from "@/lib/zod-schema/SearchForm";
 import { useDispatch } from "react-redux";
 import { setSearchData } from "@/app/features/searchSlice";
@@ -59,7 +59,7 @@ const Search = ({ onSearch }: SearchProps) => {
         />
       </div>
       <div className="flex items-center gap-2 border border-gray-300 rounded-lg px-2">
-        <BriefcaseBusiness size={15} className="text-gray-600" />
+        <Building2 size={15} className="text-gray-600" />
         <input
           type="search"
           name="jobType"

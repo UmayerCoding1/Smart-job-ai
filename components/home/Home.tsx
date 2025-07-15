@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux";
 import { setUser } from "@/app/features/user/userSlice";
 import Hero from "./Hero";
 import Jobs from "./Jobs";
+import Capabilities from "./Capabilities";
 
 
 const Home = () => {
@@ -22,8 +23,11 @@ const Home = () => {
   }, [dispatch]);
   return <div className="flex flex-col gap-10">
     <Hero/>
-    <Jobs/>
-   
+    
+    <div className="lg:max-w-7xl lg:mx-auto p-2 lg:p-0"> 
+      <Jobs/>
+    <Capabilities/>
+    </div>
   </div>;
 };
 
