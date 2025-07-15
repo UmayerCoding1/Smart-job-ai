@@ -7,6 +7,7 @@ import { setUser } from "@/app/features/user/userSlice";
 import Hero from "./Hero";
 import Jobs from "./Jobs";
 
+
 const Home = () => {
   const dispatch = useDispatch();
   useEffect(() => {
@@ -22,6 +23,7 @@ const Home = () => {
   return <div className="flex flex-col gap-10">
     <Hero/>
     <Jobs/>
+   
   </div>;
 };
 

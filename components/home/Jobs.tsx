@@ -5,6 +5,7 @@ import axios from "axios";
 import Search from "../Search";
 import { IJob } from "@/app/models/Job";
 import Joblist from "../Joblist";
+
 const Jobs = () => {
   const { data: jobs = [] } = useQuery({
     queryKey: ["jobs"],
@@ -34,13 +35,17 @@ const Jobs = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 mt-4">
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 mt-4">
             {jobs?.length > 0 ? (
-              jobs.map((job: IJob) => <Joblist key={job._id?.toString()} job={job} />)
+              jobs.map((job: IJob) => <Joblist key={job._id?.toString()} job={job}  />)
             ) : (
               <p>No jobs found</p>
             )}
           </div>
+         
+
+          
         </div>
       </section>
     </div>
