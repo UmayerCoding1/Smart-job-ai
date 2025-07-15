@@ -7,14 +7,7 @@ import Navbar from "@/components/Navbar";
 import { getServerSession } from "next-auth";
 import ReduxProvider from "@/lib/ReduxProvider";
 import QueryProvider from "@/lib/QueryProvider";
-// import { Roboto } from "next/font/google";
 
-// // Roboto font config
-// const roboto = Roboto({
-//   subsets: ["latin"],
-//   weight: ["100", "300", "400", "500", "700", "900"], // optional: pick your weights
-//   display: "swap", // better for performance
-// });
 
 // Metadata
 export const metadata: Metadata = {

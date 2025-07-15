@@ -1,9 +1,9 @@
 "use client";
 import { IJob } from "@/app/models/Job";
-import { Bookmark, BriefcaseBusiness, MapPin } from "lucide-react";
+import { Bookmark } from "lucide-react";
 import Image from "next/image";
 import React from "react";
-import PrimaryButton from "./button/PrimaryButton";
+// import PrimaryButton from "./button/PrimaryButton";
 import FadeRight from "./animations/FadeRight";
 import { Button } from "./ui/button";
 
@@ -11,8 +11,8 @@ const GoogleImage = "/assets/google.png";
 
 // todo 1 : add company information to add next time , because company data in not available all job data;
 const Joblist = ({ job }: { job: IJob }) => {
-  const { title, location,experience, jobtype, shift, salaryrange} = job;
- console.log(job);
+  const { title, experience, jobtype, shift, salaryrange} = job;
+ console.log(shift,salaryrange);
   return (
    <>
   
