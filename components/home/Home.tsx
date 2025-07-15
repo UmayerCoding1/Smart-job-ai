@@ -7,7 +7,7 @@ import { setUser } from "@/app/features/user/userSlice";
 import Hero from "./Hero";
 import Jobs from "./Jobs";
 import Capabilities from "./Capabilities";
-
+import Categorys from "./Categorys";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -21,14 +21,17 @@ const Home = () => {
 
     handleLogdenUser();
   }, [dispatch]);
-  return <div className="flex flex-col gap-10">
-    <Hero/>
-    
-    <div className="lg:max-w-7xl lg:mx-auto p-2 lg:p-0"> 
-      <Jobs/>
-    <Capabilities/>
+  return (
+    <div className="flex flex-col gap-10">
+      <Hero />
+
+      <div className="lg:max-w-7xl lg:mx-auto p-2 lg:p-0">
+        <Jobs />
+        <Capabilities />
+        <Categorys/>
+      </div>
     </div>
-  </div>;
+  );
 };
 
 export default Home;

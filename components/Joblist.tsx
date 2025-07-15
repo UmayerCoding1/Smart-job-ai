@@ -1,65 +1,56 @@
 "use client";
 import { IJob } from "@/app/models/Job";
-import { BriefcaseBusiness, MapPin } from "lucide-react";
+import { Bookmark, BriefcaseBusiness, MapPin } from "lucide-react";
 import Image from "next/image";
 import React from "react";
 import PrimaryButton from "./button/PrimaryButton";
 import FadeRight from "./animations/FadeRight";
+import { Button } from "./ui/button";
 
 const GoogleImage = "/assets/google.png";
 
 // todo 1 : add company information to add next time , because company data in not available all job data;
 const Joblist = ({ job }: { job: IJob }) => {
-  const { title, location, jobtype, shift, requiredSkills } = job;
- 
+  const { title, location,experience, jobtype, shift, salaryrange} = job;
+ console.log(job);
   return (
    <>
   
    <FadeRight>
 
-     <div className="flex flex-col md:flex-row md:items-center lg:flex-row lg:items-center justify-between gap-3 shadow-md p-5  border-transparent rounded-lg hover:border-b-2 hover:border-blue-500 transition-all duration-200">
-      <div className="flex items-center gap-3">
-        <Image src={GoogleImage} alt="Google" width={50} height={50} />
+     <div className="flex flex-col  justify-between gap-3 shadow-md p-5  border-transparent rounded-lg hover:border-b-2 hover:border-blue-500 transition-all duration-200 w-full">
+      <div className="flex items-center justify-between w-full">
+        <Image
+      src={GoogleImage}
+      alt="Google"
+      width={100}
+      height={100}
+      className="w-12 h-12"
+      />
 
-        <div className="flex flex-col gap-1">
-          <h1 className="text-xl font-semibold">{title}</h1>
-          <div className="flex  gap-3 items-center text-sm text-gray-500">
-            <p className="flex items-center gap-1">
-              <MapPin size={15} />
-              <span>{location}</span>
-            </p>
-            <p className="flex items-center gap-1">
-              <BriefcaseBusiness size={15} />
-              <span className="flex items-center gap-1">
-                <span>{jobtype}</span>|<span>{shift}</span>
-              </span>
-            </p>
-          </div>
+      <div>
+        <Button variant={"ghost"} className="border border-black">
+          <Bookmark className="w-4 h-4 mr-2" />
+          Save
+        </Button>
+      </div>
+      </div>
 
-          <div>
-            {requiredSkills &&
-              requiredSkills.slice(0, 4).map((skill, index) => (
-                <div key={index} className="inline-block mr-2 mb-2 ">
-                  <button
-                    className={`${index === 0 && "bg-blue-200"} ${
-                      index === 1 && "bg-pink-200"
-                    } ${index === 2 && "bg-green-200"} ${
-                      index === 3 && "bg-yellow-200"
-                    } px-2 py-1 rounded-full text-xs font-semibold text-gray-600`}
-                  >
-                    {skill}
-                  </button>
-                </div>
-              ))}
-          </div>
-        </div>
+      <div className="flex items-center gap-2">
+        <span className="font-semibold text">Google</span>
+        <span className="text-xs font-medium text-gray-500">5 day ago</span>
       </div>
 
       <div>
-        <PrimaryButton className="w-full px-5 py-2 text-sm ">
-          Apply
-        </PrimaryButton>
+        <h1 className="text-2xl font-bold lg:font-semibold">{title}</h1>
+        <button className="bg-gray-100 px-2 py-1 text-sm font-[500] rounded-lg mt-2">{jobtype}</button>
+        <button className="bg-gray-100 px-2 py-1 text-sm font-medium rounded-lg mt-2">{experience}</button>
       </div>
+
+      <div>
+
+      </div>
+       
     </div>
    </FadeRight>
          
