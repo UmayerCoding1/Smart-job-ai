@@ -6,7 +6,11 @@ import { seacrhSchema } from "@/lib/zod-schema/SearchForm";
 import { useDispatch } from "react-redux";
 import { setSearchData } from "@/app/features/searchSlice";
 
-const Search = () => {
+interface SearchProps {
+  onSearch: (search: { jobTitle: string; location: string; jobType: string }) => void;
+}
+
+const Search = ({ onSearch }: SearchProps) => {
   const [search, setSearch] = useState({
     jobTitle: "",
     location: "",
@@ -25,6 +29,7 @@ const Search = () => {
   const handleSubmit = () => {
     const searchData = seacrhSchema.parse(search);
     dispatch(setSearchData(searchData));
+    onSearch(searchData);
   };
 
   return (
@@ -38,7 +43,7 @@ const Search = () => {
           onChange={handleChange}
           autoComplete="off"
           placeholder="Job title or keyword"
-          className="w-72 h-12 outline-none text-sm font-medium"
+          className="lg:w-72 h-12 outline-none text-sm font-medium"
         />
       </div>
       <div className="flex items-center gap-2 border border-gray-300 rounded-lg px-2">
@@ -50,7 +55,7 @@ const Search = () => {
           onChange={handleChange}
           placeholder="Location"
           autoComplete="off"
-          className="w-72 h-12 outline-none text-sm font-medium"
+          className="lg:w-72 h-12 outline-none text-sm font-medium"
         />
       </div>
       <div className="flex items-center gap-2 border border-gray-300 rounded-lg px-2">
@@ -62,7 +67,7 @@ const Search = () => {
           onChange={handleChange}
           placeholder="Job Type (e.g. Full-time)"
           autoComplete="off"
-          className="w-72 h-12 outline-none text-sm font-medium"
+          className="lg:w-72 h-12 outline-none text-sm font-medium"
         />
       </div>
 

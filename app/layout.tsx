@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import { getServerSession } from "next-auth";
 import ReduxProvider from "@/lib/ReduxProvider";
+import QueryProvider from "@/lib/QueryProvider";
 
 
 export const metadata: Metadata = {
@@ -24,6 +25,8 @@ export default async function RootLayout({
     <html lang="en">
       <body className={` antialiased bg-white dark:bg-slate-900`}>
         <>
+        <QueryProvider>
+
           <ReduxProvider>
             <Navbar session={session} />
 
@@ -35,6 +38,7 @@ export default async function RootLayout({
                 </div>
             <footer>this is footer</footer>
           </ReduxProvider>
+        </QueryProvider>
         </>
       </body>
     </html>

@@ -100,7 +100,7 @@ export async function POST(request: NextRequest) {
 export async function GET() {
   try {
     await connectToDatabase();
-    const jobs = await Job.find();
+    const jobs = await Job.find().populate("company");
     return NextResponse.json({ jobs }, { status: 200 });
   } catch (error) {
     console.log("Job get error", error);
