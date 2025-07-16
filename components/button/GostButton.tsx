@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { Button } from '../ui/button';
-import { motion } from 'framer-motion'; // ✅ Correct package
+import { motion } from 'framer-motion'; 
 
 const MotionButton = motion(Button);
 

@@ -8,7 +8,7 @@ import FadeLeft from "../animations/FadeLeft";
 
 const Capabilities = () => {
   return (
-    <div className="mt-20">
+    <div className="mt-20 overflow-hidden">
       <section className="flex flex-col items-center justify-center gap-2">
         <h1 className="text-3xl font-semibold">Powered by Advanced AI</h1>
         <p className="text-sm text-gray-600">
