@@ -8,7 +8,7 @@ import Hero from "./Hero";
 import Jobs from "./Jobs";
 import Capabilities from "./Capabilities";
 import Categorys from "./Categorys";
-import Company from "./Company";
+// import Company from "./Company";
 import About from "./About";
 
 const Home = () => {
@@ -32,7 +32,7 @@ const Home = () => {
         <Capabilities />
         <Categorys/>
         <About/>
-        <Company/>
+        {/* <Company/> */}
       </div>
     </div>
   );
