@@ -5,7 +5,7 @@ interface PrimaryButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children: React.ReactNode;
   Icon?: React.ElementType;
-  iconSize: number;
+  iconSize?: number;
   iconPosition?: "left" | "right";
   className?: string;
 }
