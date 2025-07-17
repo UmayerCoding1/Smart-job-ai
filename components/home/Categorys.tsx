@@ -1,5 +1,7 @@
 'use client';
 
+import { ChevronRightIcon } from 'lucide-react';
+import Link from 'next/link';
 import React from 'react';
 
 const Categories = [
@@ -21,15 +23,19 @@ const Categories = [
 
 const CategoriesGrid = () => {
   return (
-    <div className="bg-gray-100  rounded-md shadow-md p-2 md:p-2 lg:p-12 mt-20">
+    <div className="bg-gray-100  rounded-md shadow-md p-2 md:p-2 lg:p-6 mt-20">
       <h2 className="text-xl font-semibold mb-4 ">Browse Jobs By</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 bg-white p-5 border-t-2 border-blue-500">
         {Categories.map((category) => (
-          <div key={category._id} className="flex items-center gap-1 text-sm hover:underline cursor-pointer">
-            <span className="text-black">▶</span>
+         <>
+          <Link href={`/browse-jobs?category=${category.name}`}>
+          <div key={category._id} className="flex items-center font-medium gap-1 text-sm hover:underline cursor-pointer">
+            <span className="text-black"><ChevronRightIcon size={13}/></span>
             <span className="hover:text-blue-600">{category.name}</span>
             <span className="text-green-600 font-semibold">({category.totaljobs})</span>
           </div>
+          </Link>
+         </>
         ))}
       </div>
     </div>

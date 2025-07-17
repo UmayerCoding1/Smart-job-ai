@@ -8,6 +8,8 @@ import Hero from "./Hero";
 import Jobs from "./Jobs";
 import Capabilities from "./Capabilities";
 import Categorys from "./Categorys";
+import Company from "./Company";
+import About from "./About";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -29,6 +31,8 @@ const Home = () => {
         <Jobs />
         <Capabilities />
         <Categorys/>
+        <About/>
+        <Company/>
       </div>
     </div>
   );

@@ -10,7 +10,7 @@ import QueryProvider from "@/lib/QueryProvider";
 import {Source_Sans_3  } from 'next/font/google';
 
 
-const noto_sans = Source_Sans_3 ({
+const SourceSans = Source_Sans_3 ({
   weight: ["400", "500",'600', "700"],
   
  
@@ -33,7 +33,7 @@ export default async function RootLayout({
 
   return (
     <html lang="en" >
-      <body className={`${noto_sans.className} bg-white dark:bg-slate-900`}>
+      <body className={`${SourceSans.className} bg-white dark:bg-slate-900`}>
         <QueryProvider>
           <ReduxProvider>
             <Navbar session={session} />
