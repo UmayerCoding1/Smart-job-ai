@@ -8,9 +8,13 @@ import Hero from "./Hero";
 import Jobs from "./Jobs";
 import Capabilities from "./Capabilities";
 import Categorys from "./Categorys";
-// import Company from "./Company";
+import Company from "./Company";
 import About from "./About";
 import KeyHighlights from "./KeyHighlights";
+import Testimonials from "./Testimonials";
+import FQA from "./FQA";
+import HowItWorks from "./HowItWorks";
+
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -34,7 +38,11 @@ const Home = () => {
         <Capabilities />
         <KeyHighlights/>
         <Categorys/>
-        {/* <Company/> */}
+        <Testimonials/>
+        <Company/>
+        <FQA/>
+        <HowItWorks/>
+       
       </div>
     </div>
   );

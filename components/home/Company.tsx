@@ -5,15 +5,15 @@ const GoogleImage = "/assets/google-logo.png";
 
 const Company = () => {
   return (
-    <div className="mt-20">
-      {/* <div className="text-center mt-10 mb-6">
+    <div className="">
+      <div className="text-center mt-10 mb-6">
   <h2 className="text-3xl font-bold text-gray-800">
     Top Companies Hiring Now
   </h2>
   <p className="mt-2 text-gray-500 max-w-xl mx-auto">
     Discover the most trusted employers actively looking for top talent on SmartJod AI. Start your career with the best in the industry.
   </p>
-</div> */}
+</div>
 
 
       <div className="overflow-hidden whitespace-nowrap   scroll-container">
