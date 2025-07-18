@@ -10,6 +10,7 @@ import Capabilities from "./Capabilities";
 import Categorys from "./Categorys";
 // import Company from "./Company";
 import About from "./About";
+import KeyHighlights from "./KeyHighlights";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -29,9 +30,10 @@ const Home = () => {
 
       <div className="lg:max-w-7xl lg:mx-auto p-2 lg:p-0">
         <Jobs />
-        <Capabilities />
-        <Categorys/>
         <About/>
+        <Capabilities />
+        <KeyHighlights/>
+        <Categorys/>
         {/* <Company/> */}
       </div>
     </div>
