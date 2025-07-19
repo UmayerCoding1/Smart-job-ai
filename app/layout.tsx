@@ -8,6 +8,7 @@ import { getServerSession } from "next-auth";
 import ReduxProvider from "@/lib/ReduxProvider";
 import QueryProvider from "@/lib/QueryProvider";
 import {Source_Sans_3  } from 'next/font/google';
+import Footer from "@/components/Footer";
 
 
 const SourceSans = Source_Sans_3 ({
@@ -40,7 +41,7 @@ export default async function RootLayout({
             <main>{children}</main>
 
           
-            <footer>this is footer</footer>
+            <Footer/>
           </ReduxProvider>
         </QueryProvider>
       </body>
