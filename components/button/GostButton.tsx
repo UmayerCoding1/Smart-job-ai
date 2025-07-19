@@ -6,9 +6,15 @@ import { motion } from 'framer-motion';
 
 const MotionButton = motion(Button);
 
-const GostButton = ({ children }: { children: React.ReactNode }) => {
+export interface GostButtonType {
+  children: React.ReactNode;
+  onClick?: () => void;
+}
+
+const GostButton = ({ children , onClick}: GostButtonType) => {
   return (
     <MotionButton
+    onClick={onClick}
       whileTap={{ scale: 0.8 }}
       whileHover={{ scale: 1.05 }}
       variant="ghost"

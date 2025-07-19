@@ -18,7 +18,7 @@ const Joblist = ({ job }: { job: IJob }) => {
   return (
     <>
       <FadeRight>
-        <div className="flex flex-col  justify-between gap-3 shadow-md px-5 py-7   rounded-lg border border-gray-300 transition-all duration-200 w-full hover:bg-blue-50 hover:scale-105">
+        <div className="flex flex-col  justify-between gap-3 shadow-md px-5 py-7   rounded-lg border bg-white border-gray-300 transition-all duration-200 w-full hover:bg-blue-50 hover:scale-105">
           <div className="flex items-center justify-between w-full">
             <Image
               src={GoogleImage}

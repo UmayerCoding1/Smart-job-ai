@@ -7,7 +7,11 @@ import { useDispatch } from "react-redux";
 import { setSearchData } from "@/app/features/searchSlice";
 
 interface SearchProps {
-  onSearch: (search: { jobTitle: string; location: string; jobType: string }) => void;
+  onSearch?: (search: {
+    jobTitle: string;
+    location: string;
+    jobType: string;
+  }) => void;
 }
 
 const Search = ({ onSearch }: SearchProps) => {
@@ -29,7 +33,10 @@ const Search = ({ onSearch }: SearchProps) => {
   const handleSubmit = () => {
     const searchData = seacrhSchema.parse(search);
     dispatch(setSearchData(searchData));
-    onSearch(searchData);
+
+    if (onSearch) {
+      onSearch(searchData);
+    }
   };
 
   return (

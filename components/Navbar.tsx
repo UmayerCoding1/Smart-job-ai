@@ -1,5 +1,5 @@
 "use client";
-import { Bell, LayoutDashboard, Menu, Search } from "lucide-react";
+import { Bell, LayoutDashboard, Menu, Search, X } from "lucide-react";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import GostButton from "./button/GostButton";
@@ -8,12 +8,18 @@ import Link from "next/link";
 import { Sheet, SheetTrigger } from "./ui/sheet";
 import NavlinkList from "./NavlinkList";
 import { IUser } from "@/app/models/User";
+import SearchBar from "./Search";
 
 export const LargeLogo = "/assets/logo.png";
 export const SmallLogo = "/assets/Ai.png";
 const Navbar = ({ session }: { session: { user: IUser } | null }) => {
-  const [isSticky, setIsSticky] = useState(false);
-  
+  const [isSticky, setIsSticky] = useState<boolean>(false);
+  const [isOpenSearch, setIsOpenSearch] = useState<boolean>(false);
+
+  const toggleSearch = () => {
+    setIsOpenSearch(!isOpenSearch);
+    window.scrollTo(0, 0);
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -30,6 +36,17 @@ const Navbar = ({ session }: { session: { user: IUser } | null }) => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
+  useEffect(() => {
+    if (isOpenSearch) {
+      document.body.classList.add("overflow-hidden");
+    } else {
+      document.body.classList.remove("overflow-hidden");
+    }
+  }, [isOpenSearch]);
+
+  console.log(isOpenSearch);
+  
   return (
     <>
       <header
@@ -59,7 +76,7 @@ const Navbar = ({ session }: { session: { user: IUser } | null }) => {
 
           {session?.user ? (
             <section className="flex items-center gap-2">
-              <GostButton>
+              <GostButton onClick={toggleSearch}>
                 <Search size={30} />
               </GostButton>
 
@@ -130,6 +147,20 @@ const Navbar = ({ session }: { session: { user: IUser } | null }) => {
           )}
         </nav>
       </header>
+
+         {isOpenSearch && <div className="w-full h-screen bg-white/70 absolute top-0 left-0 z-100 text-white flex items-center justify-center p-2">
+              <div className="bg-white text-black w-full lg:w-auto rounded-lg ">
+                <SearchBar/>
+              </div>
+
+              
+              <X 
+              onClick={toggleSearch}
+              size={30}
+              className="fixed top-2 right-2 cursor-pointer text-black"
+              />
+         </div>}
+      
       <div className="h-[65px] md:h-[75px] lg:h-[62px]"></div>
     </>
   );
