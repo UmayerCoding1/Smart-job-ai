@@ -9,6 +9,7 @@ import ReduxProvider from "@/lib/ReduxProvider";
 import QueryProvider from "@/lib/QueryProvider";
 import {Source_Sans_3  } from 'next/font/google';
 import Footer from "@/components/Footer";
+import UseAuth from "@/components/useAuth";
 
 
 const SourceSans = Source_Sans_3 ({
@@ -38,6 +39,7 @@ export default async function RootLayout({
         <QueryProvider>
           <ReduxProvider>
             <Navbar session={session} />
+            <UseAuth/>
             <main>{children}</main>
 
           

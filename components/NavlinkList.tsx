@@ -26,7 +26,8 @@ const NavlinkList = ({ session }: { session: { user: IUser } | null }) => {
   const user = useSelector((state: RootState) => state.authR.user);
   const firstName = user?.fullname.split(" ")[0];
   const lastName = user?.fullname.split(" ")[1];
-
+ console.log(user);
+ 
 
   const authenticatedRoutes = [
     { lable: "Profile", link: "/profile", icon: User },

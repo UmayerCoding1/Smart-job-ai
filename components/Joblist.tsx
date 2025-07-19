@@ -14,7 +14,7 @@ const GoogleImage = "/assets/google.png";
 // todo 1 : add company information to add next time , because company data in not available all job data;
 const Joblist = ({ job }: { job: IJob }) => {
   const { title, location, experience, jobtype, shift, salaryrange } = job;
-  console.log(shift, salaryrange);
+  
   return (
     <>
       <FadeRight>
@@ -50,6 +50,9 @@ const Joblist = ({ job }: { job: IJob }) => {
               </button>
               <button className="bg-gray-100 px-2 py-1 text-sm font-medium rounded-lg mt-2 border border-gray-300">
                 {experience}
+              </button>
+              <button className="bg-gray-100 px-2 py-1 text-sm font-medium rounded-lg mt-2 border border-gray-300">
+                {shift}
               </button>
             </div>
           </div>

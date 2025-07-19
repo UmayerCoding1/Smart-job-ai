@@ -1,10 +1,17 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button } from "./ui/button";
 import { ChevronDown, ChevronUp, RotateCcw } from "lucide-react";
 import { Checkbox } from "./ui/checkbox";
 import { AnimatePresence, motion } from "motion/react";
-
+import { useDispatch, useSelector } from "react-redux";
+import {
+    clearFilterQuery,
+  setDatePostedFilterQuery,
+  setExperienceLavelFilterQuery,
+  setJobTypeFilterQuery,
+} from "@/app/features/filterSlice";
+import { RootState } from "@/app/redux/store";
 
 export const JobType = ["any", "full time", "hybrid", "remote", "internship"];
 export const DatePosted = [
@@ -24,12 +31,15 @@ export const ExperienceLavel = [
 ];
 
 const Filter = () => {
+  const filterQuery = useSelector((state: RootState) => state.filterR);
   const [isOpenJobType, setIsOpenJobType] = useState<boolean>(true);
   const [jobType, setJobType] = React.useState<string[]>([]);
- const [isOpenExprience, setIsOpenExperience] = useState<boolean>(true);
- const [experience, setExperience] = React.useState<string[]>([]);
- const [isOpenDatePosted, setIsOpenDatePosted] = useState<boolean>(true);
- const [datePosted, setDatePosted] = React.useState<string[]>([]);
+  const [isOpenExprience, setIsOpenExperience] = useState<boolean>(true);
+  const [experience, setExperience] = React.useState<string[]>([]);
+  const [isOpenDatePosted, setIsOpenDatePosted] = useState<boolean>(true);
+  const [datePosted, setDatePosted] = React.useState<string[]>([]);
+  const [showResetButton, setShowResetButton] = useState<boolean>(false);
+  const dispatch = useDispatch();
 
   const handleJobTypeChange = (checked: boolean, value: string) => {
     if (checked) {
@@ -54,17 +64,41 @@ const Filter = () => {
       setDatePosted((prev) => prev.filter((type) => type !== value));
     }
   };
-  
+
+  useEffect(() => {
+    dispatch(setJobTypeFilterQuery(jobType));
+    dispatch(setExperienceLavelFilterQuery(experience));
+    dispatch(setDatePostedFilterQuery(datePosted));
+
+    if (
+      filterQuery.DatePosted.length > 0 ||
+      filterQuery.ExperienceLavel.length > 0 ||
+      filterQuery.JobType.length > 0
+    ) {
+      setShowResetButton(true);
+    }
+  }, [jobType, experience, datePosted,filterQuery]);
+
+ 
+   const handleResetFilter = () => {
+    setJobType([]);
+    setExperience([]);
+    setDatePosted([]);
+    setShowResetButton(false);
+    dispatch(clearFilterQuery());
+   }
 
   return (
     <>
       <div className="flex items-center justify-between border-b border-gray-300 py-2">
         <h2 className="text-2xl font-semibold">All Filter</h2>
 
-        <Button variant="destructive" className="cursor-pointer">
-          <RotateCcw />
-          <span className="mr-2 ">Reset</span>
-        </Button>
+        {showResetButton && (
+          <Button onClick={handleResetFilter} variant="destructive" className="cursor-pointer">
+            <RotateCcw />
+            <span className="mr-2 ">Reset</span>
+          </Button>
+        )}
       </div>
 
       {/* Job Type */}
@@ -74,7 +108,7 @@ const Filter = () => {
           className="flex items-center justify-between border-b border-gray-300 py-2 hover:bg-blue-50 cursor-pointer"
         >
           <h2 className="text-lg font-semibold">Job Type</h2>
-          {isOpenJobType ? <ChevronUp /> : <ChevronDown />}
+          {isOpenJobType ? <ChevronUp size={15} /> : <ChevronDown size={15} />}
         </div>
 
         <AnimatePresence>
@@ -114,7 +148,11 @@ const Filter = () => {
           className="flex items-center justify-between border-b border-gray-300 py-2 hover:bg-blue-50 cursor-pointer"
         >
           <h2 className="text-lg font-semibold">Experience Level</h2>
-          {isOpenExprience ? <ChevronUp /> : <ChevronDown />}
+          {isOpenExprience ? (
+            <ChevronUp size={15} />
+          ) : (
+            <ChevronDown size={15} />
+          )}
         </div>
 
         <AnimatePresence>
@@ -154,7 +192,11 @@ const Filter = () => {
           className="flex items-center justify-between border-b border-gray-300 py-2 hover:bg-blue-50 cursor-pointer"
         >
           <h2 className="text-lg font-semibold">Date Posted</h2>
-          {isOpenDatePosted ? <ChevronUp /> : <ChevronDown />}
+          {isOpenDatePosted ? (
+            <ChevronUp size={15} />
+          ) : (
+            <ChevronDown size={15} />
+          )}
         </div>
 
         <AnimatePresence>
@@ -186,10 +228,6 @@ const Filter = () => {
           )}
         </AnimatePresence>
       </section>
-
-
-
-
     </>
   );
 };
